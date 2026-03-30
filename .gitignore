@@ -1,41 +1,52 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
 .pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
 
-# testing
-/coverage
-
-# next.js
+# Next.js build and cache
 /.next/
 /out/
+# Added for 'experimental.optimizeCss' (critters)
+.critters/
 
-# production
+# Testing (Vitest & Jest)
+/coverage
+# Vitest UI & cache
+.vitest/
+# Potential Jest cache
+.jest-cache/
+junit.xml
+
+# Prisma
+# Since you have 'scripts/check-prisma-types.ts'
+/src/generated/prisma
+/scripts/temp-types/
+*.db
+*.db-journal
+
+# Production / Vercel
 /build
+.vercel
 
-# misc
+# Environment Files
+.env*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# AI & Editor
+.claude/
+.vscode/
+.idea/
 .DS_Store
-*.pem
 
-# debug
+# Debug/Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
-.vercel
-
-# typescript
+# TypeScript
 *.tsbuildinfo
 next-env.d.ts

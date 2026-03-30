@@ -1,0 +1,78 @@
+
+Piyush-pc@Piyush MINGW64 /f/efy2014s/React/taskflow-saas (master)
+$ npx prisma migrate dev --name init
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Error: Prisma schema validation - (get-config wasm)
+Error code: P1012
+error: The datasource property `url` is no longer supported in schema files. Move connection URLs for Migrate to `prisma.config.ts` and pass either `adapter` for a direct database connection or `accelerateUrl` for Accelerate to the `PrismaClient` constructor. See https://pris.ly/d/config-datasource and https://pris.ly/d/prisma7-client-config
+  -->  prisma\schema.prisma:8
+   |
+ 7 |   provider = "postgresql"
+ 8 |   url      = env("DATABASE_URL")
+   |
+
+
+error: The datasource property `directUrl` is no longer supported in schema files. Move connection URLs to `prisma.config.ts`. See https://pris.ly/d/config-datasource
+  -->  prisma\schema.prisma:9
+   |
+ 8 |   url      = env("DATABASE_URL")
+ 9 |   directUrl = env("DIRECT_URL")
+   |
+
+Validation Error Count: 2
+[Context: getConfig]
+
+Prisma CLI Version : 7.4.1
+
+Piyush-pc@Piyush MINGW64 /f/efy2014s/React/taskflow-saas (master)
+$ npx prisma migrate dev --name init
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Datasource "db": PostgreSQL database "postgres", schema "public" at "localhost:51213"
+
+Error: P1001
+
+Can't reach database server at `localhost:51214`
+
+Please make sure your database server is running at `localhost:51214`.
+
+
+Piyush-pc@Piyush MINGW64 /f/efy2014s/React/taskflow-saas (master)
+$ npx prisma migrate dev --name init
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+Datasource "db": PostgreSQL database "neondb", schema "public" at "ep-broad-cake-a788jk1a-pooler.ap-southeast-2.aws.neon.tech"
+
+Applying migration `20260304154036_init`
+
+The following migration(s) have been created and applied from new schema changes:
+
+prisma\migrations/
+  └─ 20260304154036_init/
+    └─ migration.sql
+
+Your database is now in sync with your schema.
+
+
+Piyush-pc@Piyush MINGW64 /f/efy2014s/React/taskflow-saas (master)
+$ npm install next-auth @auth/prisma-adapter bcryptjs
+npm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+
+added 150 packages, removed 25 packages, changed 36 packages, and audited 958 packages in 7m
+
+245 packages are looking for funding
+  run `npm fund` for details
+
+14 moderate severity vulnerabilities
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
