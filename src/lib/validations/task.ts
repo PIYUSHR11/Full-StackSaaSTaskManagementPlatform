@@ -5,9 +5,9 @@ import { TaskStatus, Priority } from "@prisma/client";
 export const createTaskSchema = z.object({
   title: z.string().min(1, "Title is required").max(100),
   description: z.string().max(1000).optional(),
-  status: z.nativeEnum(TaskStatus).default(TaskStatus.TODO),
+  status: z.nativeEnum(TaskStatus),
   priority: z.nativeEnum(Priority).default(Priority.MEDIUM),
-  dueDate: z.string().datetime().optional(),
+  dueDate: z.string().datetime(),
   assignedToId: z.string().optional(),
 });
 
