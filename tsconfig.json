@@ -41,6 +41,8 @@
     "node_modules",
     "scripts",
 "jest.config.ts",
+"jest.setup.ts",
+"**/__tests__/*",
     "**/*.test.ts",
     "**/*.spec.ts"
   ]
