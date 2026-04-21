@@ -22,6 +22,7 @@ export function TaskForm() {
     defaultValues: {
       status: TaskStatus.TODO,
       priority: Priority.MEDIUM,
+      dueDate:"",
     },
   });
 
