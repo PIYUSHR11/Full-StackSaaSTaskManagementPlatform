@@ -16,6 +16,7 @@ interface TasksPageProps {
     assignedToId?: string;
     search?: string;
     page?: string;
+    dueDate?: string;
   };
 }
 
@@ -27,6 +28,7 @@ export default async function TasksPage({ searchParams }: TasksPageProps) {
     search: searchParams.search,
     page: searchParams.page ? parseInt(searchParams.page) : 1,
     limit: 10,
+    dueDate: searchParams.dueDate || "",
   };
   
   const result = await getTasks(filters);
