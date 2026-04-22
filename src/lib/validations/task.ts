@@ -16,8 +16,9 @@ export const updateTaskSchema = createTaskSchema.partial().extend({
 });
 
 export const taskFiltersSchema = z.object({
-  status: z.nativeEnum(TaskStatus).optional(),
-  priority: z.nativeEnum(Priority).optional(),
+  status: z.nativeEnum(TaskStatus),
+  priority: z.nativeEnum(Priority),
+  dueDate: z.string(),
   assignedToId: z.string().optional(),
   search: z.string().optional(),
   page: z.coerce.number().min(1).default(1),
