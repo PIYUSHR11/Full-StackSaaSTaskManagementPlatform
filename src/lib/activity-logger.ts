@@ -28,7 +28,7 @@ export async function logActivity({
         entityId,
         userId,
         organizationId,
-        metadata: metadata ?? null,
+        metadata: metadata ?? undefined,
       },
     })
   } catch (error) {
