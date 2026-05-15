@@ -7,7 +7,9 @@ interface LogActivityParams {
   entityId: string
   userId: string
   organizationId: string
-  metadata?: Record<string, unknown>
+ // metadata?: Record<string, unknown>
+ metadata?: NullableJsonNullValueInput | InputJsonValue; // Adjusted type
+  
 }
 
 export async function logActivity({
