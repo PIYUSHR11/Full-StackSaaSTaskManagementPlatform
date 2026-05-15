@@ -18,7 +18,8 @@ export function usePermissions() {
       canManageTask(userRole, taskCreatorId, userId!, orgRole),
     
    // isAdmin: [Role.SUPER_ADMIN, Role.ADMIN].includes(userRole),       // cast userRole to Role
-    isAdmin: [Role.SUPER_ADMIN, Role.ADMIN].includes(userRole as "SUPER_ADMIN" | "ADMIN"),
+   // isAdmin: [Role.SUPER_ADMIN, Role.ADMIN].includes(userRole as "SUPER_ADMIN" | "ADMIN"),
+	 isAdmin: (userRole === Role.SUPER_ADMIN || userRole === Role.ADMIN), // Explicitly check roles
 	isManager: userRole === Role.MANAGER,
     isOwner: orgRole === "OWNER",
   };
