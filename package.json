@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "rm -rf .next && next build",
      "postinstall": "prisma generate",
     "clean": "rm -rf .next node_modules && npm install",
     "check:db": "npx tsx scripts/check-prisma-types.ts",
