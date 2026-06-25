@@ -6,7 +6,7 @@ import { hasPermission, canManageTask } from "@/lib/auth/permissions";
 export function usePermissions() {
   const { data: session } = useSession();
   
-  const userRole = session?.user?.role ?? Role.USER;
+  const userRole: Role = session?.user?.role ?? Role.USER;  //userRole of type Role
   const orgRole = session?.user?.orgRole;
   const userId = session?.user?.id;
   
@@ -17,8 +17,10 @@ export function usePermissions() {
     canManageTask: (taskCreatorId: string) => 
       canManageTask(userRole, taskCreatorId, userId!, orgRole),
     
-    isAdmin: [Role.SUPER_ADMIN, Role.ADMIN].includes(userRole),
-    isManager: userRole === Role.MANAGER,
+   // isAdmin: [Role.SUPER_ADMIN, Role.ADMIN].includes(userRole),       // cast userRole to Role
+   // isAdmin: [Role.SUPER_ADMIN, Role.ADMIN].includes(userRole as "SUPER_ADMIN" | "ADMIN"),
+	 isAdmin: (userRole === Role.SUPER_ADMIN || userRole === Role.ADMIN), // Explicitly check roles
+	isManager: userRole === Role.MANAGER,
     isOwner: orgRole === "OWNER",
   };
 }
