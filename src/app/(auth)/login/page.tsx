@@ -1,7 +1,7 @@
 //v5
 // src/app/(auth)/login/page.tsx
 import { Suspense } from 'react';
-import LoginPageContent from './login-content';
+import LoginPageContent from './login-form';
 
 // This is safe to export because it doesn't use hooks directly
 export const dynamic = 'force-dynamic';
