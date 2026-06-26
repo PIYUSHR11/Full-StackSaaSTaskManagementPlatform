@@ -61,9 +61,13 @@ export function canManageTask(
   orgRole?: OrgRole
 ): boolean {
   // Admins can manage all tasks
-  if ([Role.SUPER_ADMIN, Role.ADMIN].includes(userRole)) {
+ /* if ([Role.SUPER_ADMIN, Role.ADMIN].includes(userRole as Role)) {
     return true;
-  }
+  }*/
+  const adminRoles: Role[] = [Role.SUPER_ADMIN, Role.ADMIN];
+if (adminRoles.includes(userRole)) {
+  return true;
+}
   
   // Managers can manage tasks in their org
   if (userRole === Role.MANAGER && orgRole === "ADMIN") {

@@ -30,9 +30,9 @@ const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient 
 }
 
-// 2. Create the pool and client once
-const pool = globalForPrisma.pool || new Pool({ connectionString: process.env.DATABASE_URL })
-const adapter = new PrismaNeon(pool)
+// 2. Create the pool and client once using ! assertion
+const pool = globalForPrisma.pool || new Pool({ connectionString: process.env.DATABASE_URL! })
+const adapter = new PrismaNeon(pool as unknown as any)
 const prisma = globalForPrisma.prisma || new PrismaClient({ adapter })
 
 // 3. Store them in globalThis during development to prevent hot-reload recreation
