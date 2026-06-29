@@ -1,11 +1,14 @@
 // src/middleware.ts
+/*
 import { withAuth } from "next-auth/middleware"
 import { NextResponse } from "next/server"
+import {getToken} from "next-auth/jwt"
 
 export default withAuth(
-  function middleware(req) {
-    const token = req.nextauth.token
-    const path = req.nextUrl.pathname
+  function middleware(req: NextResponse) {
+    //const token = req.nextauth.token
+    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+	const path = req.nextUrl.pathname
 
     // Define public paths that don't require authentication
     const isPublicPath = path === "/login" ||
@@ -49,6 +52,46 @@ export const config = {
      * - favicon.ico (favicon file)
      * - public folder
      */
-    "/((?!_next/static|_next/image|favicon.ico|public).*)",
+/*    "/((?!_next/static|_next/image|favicon.ico|public).*)",
   ],
 }
+*/
+
+
+import { getToken } from "next-auth/jwt";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+
+export async function middleware(req: NextRequest) {
+  const token = await getToken({ 
+    req, 
+    secret: process.env.NEXTAUTH_SECRET 
+  });
+
+  const { pathname } = req.nextUrl;
+
+  // Define public paths
+  const isPublicPath = pathname === "/login" || 
+                       pathname === "/register" || 
+                       pathname.startsWith("/api/auth");
+
+  // 1. If logged in and trying to access public pages, redirect to dashboard
+  if (token && isPublicPath) {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
+  }
+
+  // 2. If NOT logged in and trying to access protected paths, redirect to login
+  if (!token && !isPublicPath) {
+    return NextResponse.redirect(new URL("/login", req.url));
+  }
+
+  // 3. Otherwise, proceed
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|public).*)",
+  ],
+};
+

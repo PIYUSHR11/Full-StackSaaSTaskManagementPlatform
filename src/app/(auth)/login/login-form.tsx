@@ -2,7 +2,7 @@
 // src/app/(auth)/login/login-content.tsx
 'use client'
 
-import { signIn } from "next-auth/react"
+import { signIn, useSession } from "next-auth/react"
 import { useState, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
@@ -12,6 +12,8 @@ import { AiOutlineMail } from "react-icons/ai"
 import { FiLock, FiEye, FiEyeOff } from "react-icons/fi"
 
 export default function LoginPageContent() {
+  const {status} = useSession();
+console.log("Current session status ",status)  
   const router = useRouter()
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard"
@@ -43,8 +45,9 @@ export default function LoginPageContent() {
       if (result?.error) {
         setError("Invalid email or password")
       } else {
-        router.push(callbackUrl)
-        router.refresh()
+       // router.push(callbackUrl)
+		window.location.assign(callbackUrl);
+       // router.refresh()
       }
     } catch (error) {
       setError("Something went wrong")
